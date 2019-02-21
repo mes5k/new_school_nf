@@ -8,10 +8,10 @@ Channel
 process gen_csv {
 
     input:
-    val x
+    val x from ch1
 
     output:
-    file "${x}.csv"
+    file "${x}.csv" into ch2
 
     script:
     """
@@ -20,6 +20,6 @@ process gen_csv {
     """
 }
 
-ch1.gen_csv()
-   .to_tsv()
-   .to_psv()
+workflow {
+    to_tsv( to_psv(ch2) ).view()
+}

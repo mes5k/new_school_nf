@@ -19,7 +19,7 @@ process to_psv {
     file(tsv_in)
 
     output:
-    file("${tsv_in}.tsv")
+    file("${tsv_in}.psv")
 
     script:
     """
