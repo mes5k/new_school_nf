@@ -1,5 +1,6 @@
 
 require 'modules/convert_procs.nf'
+require 'modules/expand.nf'
 
 Channel
     .from(1,2,3,4,5)
@@ -21,5 +22,7 @@ process gen_csv {
 }
 
 workflow {
-    to_tsv( to_psv(ch2) ).view()
+    tsv = to_tsv( to_psv(ch2) )
+
+    expand(tsv)
 }
