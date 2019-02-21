@@ -1,5 +1,5 @@
 
-require 'modules/convert.nf'
+require 'modules/convert_procs.nf'
 
 Channel
     .from(1,2,3,4,5)
