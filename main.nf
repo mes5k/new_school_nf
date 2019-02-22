@@ -6,6 +6,7 @@ Channel
     .from(1,2,3,4,5)
     .set{ ch1 }
 
+// normal nextflow process
 process gen_csv {
 
     input:
@@ -22,7 +23,10 @@ process gen_csv {
 }
 
 workflow {
-    tsv = to_tsv( to_psv(ch2) )
 
-    expand(tsv)
+    // import and use just processes
+    to_tsv( to_psv(ch2) )
+
+    // import and use a whole workflow
+    expand(to_tsv.output)
 }
