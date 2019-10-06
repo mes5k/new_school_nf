@@ -1,0 +1,279 @@
+{
+  "type": "Categorization",
+  "elements": [
+    {
+      "type": "Category",
+      "label": "Main options",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/main_options/properties/reads"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/main_options/properties/outdir"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/main_options/properties/pico"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/main_options/properties/singleEnd"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/main_options/properties/forward_stranded"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/main_options/properties/reverse_stranded"
+        }
+      ]
+    },
+    {
+      "type": "Category",
+      "label": "Read trimming",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/read_trimming/properties/clip_r1"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/read_trimming/properties/clip_r2"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/read_trimming/properties/three_prime_clip_r1"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/read_trimming/properties/three_prime_clip_r2"
+        }
+      ]
+    },
+    {
+      "type": "Category",
+      "label": "Alignment",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/alignment/properties/aligner"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/alignment/properties/genome"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/alignment/properties/star_index"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/alignment/properties/hisat2_index"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/alignment/properties/fasta"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/alignment/properties/gtf"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/alignment/properties/gff"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/alignment/properties/bed12"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/alignment/properties/igenomes_base"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/alignment/properties/splicesites"
+        }
+      ]
+    },
+    {
+      "type": "Category",
+      "label": "FeatureCount settings",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/featurecount_settings/properties/fcGroupFeatures"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/featurecount_settings/properties/fcGroupFeaturesType"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/featurecount_settings/properties/fcExtraAttributes"
+        }
+      ]
+    },
+    {
+      "type": "Category",
+      "label": "Pipeline defaults",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/pipeline_defaults/properties/container"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/pipeline_defaults/properties/plaintext_email"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/pipeline_defaults/properties/help"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/pipeline_defaults/properties/sampleLevel"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/pipeline_defaults/properties/email"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/pipeline_defaults/properties/max_cpus"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/pipeline_defaults/properties/max_time"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/pipeline_defaults/properties/max_memory"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/pipeline_defaults/properties/saveTrimmed"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/pipeline_defaults/properties/saveAlignedIntermediates"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/pipeline_defaults/properties/saveReference"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/pipeline_defaults/properties/maxMultiqcEmailFileSize"
+        }
+      ]
+    },
+    {
+      "type": "Category",
+      "label": "Skip pipeline steps",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/skip_pipeline_steps/properties/skip_qc"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/skip_pipeline_steps/properties/skip_multiqc"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/skip_pipeline_steps/properties/skip_genebody_coverage"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/skip_pipeline_steps/properties/skip_edger"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/skip_pipeline_steps/properties/skip_dupradar"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/skip_pipeline_steps/properties/skip_rseqc"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/skip_pipeline_steps/properties/skip_preseq"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/skip_pipeline_steps/properties/skip_fastqc"
+        }
+      ]
+    },
+    {
+      "type": "Category",
+      "label": "Cluster job submission",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/cluster_job_submission/properties/project"
+        }
+      ]
+    },
+    {
+      "type": "Category",
+      "label": "AWS cloud usage",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/aws_cloud_usage/properties/awsregion"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/aws_cloud_usage/properties/awsqueue"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/aws_cloud_usage/properties/tracedir"
+        }
+      ]
+    },
+    {
+      "type": "Category",
+      "label": "Advanced",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/advanced/properties/subsampFilesizeThreshold"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/advanced/properties/name"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/advanced/properties/hisatBuildMemory"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/advanced/properties/seqCenter"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/advanced/properties/star_memory"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/advanced/properties/multiqc_config"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/advanced/properties/unstranded"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/advanced/properties/readPaths"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,411 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "main_options": {
+      "title": "Main options",
+      "type": "object",
+      "properties": {
+        "reads": {
+          "title": "Input files",
+          "type": "string",
+          "description": "Specify the location of your input FastQ files.",
+          "default": "'data/*{1,2}.fastq.gz'"
+        },
+        "outdir": {
+          "title": "Output directory",
+          "type": "string",
+          "description": "Set where to save the results from the pipeline",
+          "default": "./results"
+        },
+        "pico": {
+          "title": "Library type: Pico",
+          "type": "boolean",
+          "description": "Set trimming and standedness settings for the SMARTer Stranded Total RNA-Seq Kit - Pico Input kit.",
+          "default": false
+        },
+        "singleEnd": {
+          "title": "Single-end sequencing input",
+          "type": "boolean",
+          "description": "Use single-end sequencing inputs instead of paired-end.",
+          "default": false
+        },
+        "forward_stranded": {
+          "title": "Forward stranded",
+          "type": "boolean",
+          "description": "Samples are made using a forward-stranded library type.",
+          "default": false
+        },
+        "reverse_stranded": {
+          "title": "Reverse stranded",
+          "type": "boolean",
+          "description": "Samples are made using a reverse-stranded library type.",
+          "default": false
+        }
+      }
+    },
+    "read_trimming": {
+      "title": "Read trimming",
+      "type": "object",
+      "properties": {
+        "clip_r1": {
+          "title": "Read Clipping: 5' R1",
+          "type": "integer",
+          "description": "Instructs Trim Galore to remove bp from the 5' end of read 1 (or single-end reads).",
+          "default": 0
+        },
+        "clip_r2": {
+          "title": "Read Clipping: 5' R1",
+          "type": "integer",
+          "description": "Instructs Trim Galore to remove bp from the 5' end of read 2 (paired-end reads only).",
+          "default": 0
+        },
+        "three_prime_clip_r1": {
+          "title": "Read Clipping: 3' R1",
+          "type": "integer",
+          "description": "Instructs Trim Galore to remove bp from the 3' end of read 1 AFTER adapter/quality trimming has been performed.",
+          "default": 0
+        },
+        "three_prime_clip_r2": {
+          "title": "Read Clipping: 3' R2",
+          "type": "integer",
+          "description": "Instructs Trim Galore to re move bp from the 3' end of read 2 AFTER adapter/quality trimming has been performed.",
+          "default": 0
+        }
+      }
+    },
+    "alignment": {
+      "title": "Alignment",
+      "type": "object",
+      "properties": {
+        "aligner": {
+          "title": "Alignment tool",
+          "type": "string",
+          "description": "Choose whether to align reads with STAR or HISAT2",
+          "enum": [
+            "star",
+            "hisat2"
+          ],
+          "default": "star"
+        },
+        "genome": {
+          "title": "Alignment reference iGenomes key",
+          "type": "string",
+          "description": "Ref. genome key for iGenomes",
+          "enum": [
+            "",
+            "GRCh37",
+            "GRCm38",
+            "TAIR10",
+            "EB2",
+            "UMD3.1",
+            "WBcel235",
+            "CanFam3.1",
+            "GRCz10",
+            "BDGP6",
+            "EquCab2",
+            "EB1",
+            "Galgal4",
+            "Gm01",
+            "Mmul_1",
+            "IRGSP-1.0",
+            "CHIMP2.1.4",
+            "Rnor_6.0",
+            "R64-1-1",
+            "EF2",
+            "Sbi1",
+            "Sscrofa10.2",
+            "AGPv3"
+          ],
+          "default": ""
+        },
+        "star_index": {
+          "title": "STAR index",
+          "type": "string",
+          "description": "Path to STAR index",
+          "default": ""
+        },
+        "hisat2_index": {
+          "title": "HISAT2 index",
+          "type": "string",
+          "description": "Path to HiSAT2 index",
+          "default": ""
+        },
+        "fasta": {
+          "title": "FASTA",
+          "type": "string",
+          "description": "Path to Fasta reference",
+          "default": ""
+        },
+        "gtf": {
+          "title": "GTF",
+          "type": "string",
+          "description": "Path to GTF file",
+          "default": ""
+        },
+        "gff": {
+          "title": "GFF",
+          "type": "string",
+          "description": "Path to GFF3 file",
+          "default": ""
+        },
+        "bed12": {
+          "title": "BED12",
+          "type": "string",
+          "description": "Path to bed12 file",
+          "default": ""
+        },
+        "igenomes_base": {
+          "title": "iGenomes base path",
+          "type": "string",
+          "description": "Base path for iGenomes reference files",
+          "default": "s3://ngi-igenomes/igenomes/"
+        },
+        "splicesites": {
+          "title": "HISAT2 splice sites file",
+          "type": "string",
+          "description": "Optional splice-sites file for building a HISAT2 alignment index",
+          "default": ""
+        }
+      }
+    },
+    "featurecount_settings": {
+      "title": "FeatureCount settings",
+      "type": "object",
+      "properties": {
+        "fcGroupFeatures": {
+          "title": "FeatureCounts Group Features",
+          "type": "string",
+          "description": "By default, the pipeline uses `gene_name` as the default gene identifier group. Specifying `--fcGroupFeatures` uses a different category present in your provided GTF file.",
+          "default": "gene_id"
+        },
+        "fcGroupFeaturesType": {
+          "title": "FeatureCounts Group Features Biotype",
+          "type": "string",
+          "description": "GTF attribute name that gives the biotype of a feature.",
+          "default": "gene_biotype"
+        },
+        "fcExtraAttributes": {
+          "title": "FeatureCounts Extra Gene Names",
+          "type": "string",
+          "description": "By default the pipeline uses `gene_names` as additional gene identifiers apart from ENSEMBL identifiers. --fcExtraAttributes is passed to featureCounts as an --extraAttributes parameter",
+          "default": ""
+        }
+      }
+    },
+    "pipeline_defaults": {
+      "title": "Pipeline defaults",
+      "type": "object",
+      "properties": {
+        "container": {
+          "title": "Software container",
+          "type": "string",
+          "description": "Dockerhub address for pipeline container",
+          "default": "nfcore/rnaseq:latest"
+        },
+        "plaintext_email": {
+          "title": "Plain text email",
+          "type": "boolean",
+          "description": "Set to receive plain-text e-mails instead of HTML formatted.",
+          "default": false
+        },
+        "help": {
+          "title": "Help",
+          "type": "boolean",
+          "description": "Specify to show the pipeline help text.",
+          "default": false
+        },
+        "sampleLevel": {
+          "title": "sampleLevel",
+          "type": "boolean",
+          "description": "Turn off project-level analysis (edgeR MDS plot and heatmap).",
+          "default": false
+        },
+        "email": {
+          "title": "Your email address",
+          "type": "string",
+          "description": "Your email address, required to receive completion notification.",
+          "default": ""
+        },
+        "max_cpus": {
+          "title": "Maximum available CPUs",
+          "type": "integer",
+          "description": "Use to set a top-limit for the default CPUs requirement for each process.",
+          "default": 16
+        },
+        "max_time": {
+          "title": "Maximum available time",
+          "type": "string",
+          "description": "Use to set a top-limit for the default time requirement for each process.",
+          "default": "10d"
+        },
+        "max_memory": {
+          "title": "Maximum available memory",
+          "type": "string",
+          "description": "Use to set a top-limit for the default memory requirement for each process.",
+          "default": "128.GB"
+        },
+        "saveTrimmed": {
+          "title": "Save Trimmed FastQ files",
+          "type": "boolean",
+          "description": "Save the trimmed FastQ files the the results directory.",
+          "default": false
+        },
+        "saveAlignedIntermediates": {
+          "title": "Save Aligned Intermediate BAM files",
+          "type": "boolean",
+          "description": "Save intermediate BAM files the the results directory.",
+          "default": false
+        },
+        "saveReference": {
+          "title": "Save reference genome index",
+          "type": "boolean",
+          "description": "Save the generated reference files the the results directory.",
+          "default": false
+        },
+        "maxMultiqcEmailFileSize": {
+          "title": "Maximum MultiQC email file size",
+          "type": "string",
+          "description": "Theshold size for MultiQC report to be attached in notification email. If file generated by pipeline exceeds the threshold, it will not be attached.",
+          "default": "25.MB"
+        }
+      }
+    },
+    "skip_pipeline_steps": {
+      "title": "Skip pipeline steps",
+      "type": "object",
+      "properties": {
+        "skip_qc": {
+          "title": "Skip all QC steps, apart from MultiQC",
+          "type": "boolean",
+          "default": false
+        },
+        "skip_multiqc": {
+          "title": "Skip MultiQC",
+          "type": "boolean",
+          "default": false
+        },
+        "skip_genebody_coverage": {
+          "title": "Skip RSeQC gene body coverage",
+          "type": "boolean",
+          "default": false
+        },
+        "skip_edger": {
+          "title": "Skip edgeR QC analysis",
+          "type": "boolean",
+          "default": false
+        },
+        "skip_dupradar": {
+          "title": "Skip DupRadar QC",
+          "type": "boolean",
+          "default": false
+        },
+        "skip_rseqc": {
+          "title": "Skip RSeQC steps, apart from Gene body coverage",
+          "type": "boolean",
+          "default": false
+        },
+        "skip_preseq": {
+          "title": "Skip Preseq analysis",
+          "type": "boolean",
+          "default": false
+        },
+        "skip_fastqc": {
+          "title": "Skip FastQC",
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "cluster_job_submission": {
+      "title": "Cluster job submission",
+      "type": "object",
+      "properties": {
+        "project": {
+          "title": "Cluster project",
+          "type": "string",
+          "description": "For use on HPC systems where a project ID is required for job submission",
+          "default": ""
+        }
+      }
+    },
+    "aws_cloud_usage": {
+      "title": "AWS cloud usage",
+      "type": "object",
+      "properties": {
+        "awsregion": {
+          "title": "AWS Region",
+          "type": "string",
+          "description": "The AWS region to run your job in.",
+          "default": "eu-west-1"
+        },
+        "awsqueue": {
+          "title": "AWS job queue",
+          "type": "string",
+          "description": "The JobQueue that you intend to use on AWS Batch.",
+          "default": ""
+        },
+        "tracedir": {
+          "title": "Trace directory",
+          "type": "string",
+          "description": "Set to where the pipeline trace should be saved. Set to local path when using AWS on S3.",
+          "default": "./results/pipeline_info"
+        }
+      }
+    },
+    "advanced": {
+      "title": "Advanced",
+      "type": "object",
+      "properties": {
+        "subsampFilesizeThreshold": {
+          "title": "Subsample file-size threshold",
+          "type": "integer",
+          "description": "Defines the threshold in BAM file size (in bytes) at which data subsampling is used prior to the RSeQC `gene_body_coverage` step.",
+          "default": 10000000000
+        },
+        "name": {
+          "title": "Custom run name",
+          "type": "string",
+          "description": "Helper variable. Do not set, use -name instead.",
+          "default": ""
+        },
+        "hisatBuildMemory": {
+          "title": "HISAT2 indexing: required memory for splice sites in GB",
+          "type": "integer",
+          "description": "HISAT2 needs a very large amount of memory to build an index with splice sites. If the available memory is below this threshold, the index build will proceed without splicing information.",
+          "default": 200
+        },
+        "seqCenter": {
+          "title": "Sequencing center",
+          "type": "string",
+          "description": "Add sequencing center in @RG line of output BAM header",
+          "default": ""
+        },
+        "star_memory": {
+          "title": "STAR memory",
+          "type": "string",
+          "description": "Instead of using the default amount available, force STAR to use a given amount of memory",
+          "default": ""
+        },
+        "multiqc_config": {
+          "title": "MultiQC Config",
+          "type": "string",
+          "description": "Path to a config file for MultiQC",
+          "default": "/Users/ewels/GitHub/nf-core/rnaseq/assets/multiqc_config.yaml"
+        },
+        "unstranded": {
+          "title": "Unstranded",
+          "type": "boolean",
+          "description": "Force the library strandedness to be unstranded",
+          "default": false
+        },
+        "readPaths": {
+          "title": "Read Paths",
+          "type": "string",
+          "description": "For use with nextflow config files only",
+          "default": ""
+        }
+      }
+    }
+  }
+}
