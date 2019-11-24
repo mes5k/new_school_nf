@@ -1,17 +1,15 @@
+nextflow.preview.dsl=2
 
-require 'modules/convert_procs.nf'
+include 'modules/convert_procs.nf'
 
-Channel
-    .from(1,2,3,4,5)
-    .set{ ch1 }
 
 process gen_csv {
 
     input:
-    val x from ch1
+    val x
 
     output:
-    file "${x}.csv" into ch2
+    file "${x}.csv"
 
     script:
     """
@@ -21,5 +19,11 @@ process gen_csv {
 }
 
 workflow {
+
+    Channel
+        .from(1,2,3,4,5)
+        .set{ ch1 }
+    ch2 = gen_csv(ch1)
+
     to_tsv( to_psv(ch2) ).view()
 }
