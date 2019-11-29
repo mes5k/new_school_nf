@@ -1,0 +1,6 @@
+{
+    "main_option": {
+        "reads": "some_reads_R1.fastq.gz",
+        "outdir": "results"
+    }
+}
