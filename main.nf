@@ -1,6 +1,7 @@
 nextflow.preview.dsl=2
 
-include './modules/convert_procs.nf'
+include {to_psv} './modules/convert_procs.nf'
+include {to_tsv} './modules/convert_procs.nf'
 
 
 process gen_csv {
