@@ -4,6 +4,7 @@ include { to_psv } from './modules/convert_procs.nf'
 include { to_tsv } from './modules/convert_procs.nf'
 
 process gen_csv {
+    tag "${x}"
 
     input:
     val x

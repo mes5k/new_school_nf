@@ -1,5 +1,6 @@
 
 process to_tsv {
+    tag "${csv_in}"
 
     input:
     file(csv_in)
@@ -14,6 +15,7 @@ process to_tsv {
 }
 
 process to_psv {
+    tag "${tsv_in}"
 
     input:
     file(tsv_in)
